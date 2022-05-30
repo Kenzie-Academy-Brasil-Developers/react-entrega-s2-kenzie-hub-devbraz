@@ -2,6 +2,7 @@ import { Container, Content } from "./styles"
 import { Redirect, useHistory } from "react-router-dom"
 import TecnologyCard from "../../components/TecnologyCard"
 import RegisterModal from "../../components/ModalRegister"
+import { useState } from "react"
 
 function Home({authenticated, dataUser, setDataUser}) {
 
