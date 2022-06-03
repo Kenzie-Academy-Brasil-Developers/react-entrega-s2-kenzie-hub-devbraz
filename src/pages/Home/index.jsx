@@ -2,29 +2,37 @@ import { Container, Content } from "./styles"
 import { Redirect, useHistory } from "react-router-dom"
 import TecnologyCard from "../../components/TecnologyCard"
 import RegisterModal from "../../components/ModalRegister"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import api from "../../services/api";
 
-function Home({authenticated, dataUser, setDataUser}) {
+function Home({authenticated}) {
 
   const history = useHistory()
   const [changeTecs, setChangeTecs] = useState([])
   const userLoged = JSON.parse(localStorage.getItem('@Kenziehub:user'))
+  const {id} = userLoged
+
+  useEffect(()=>{
+    api.get(`/users/${id}`).then((res) => {
+      localStorage.setItem('@Kenziehub:user', JSON.stringify(res.data))
+      setChangeTecs([...changeTecs, ...res.data.techs])
+    })
+  },[])
 
   if (!authenticated) {
     return <Redirect to='/'/>
   }
 
-const logOut = () => {
-  localStorage.clear()
-  return history.push('/')
-}
+  const logOut = () => {
+    localStorage.clear()
+    return history.push('/')
+  }
 
   return <Container>
     <Content>
-
       <nav>
         <h2>Kenzie Hub</h2>
-        <button  onClick={(logOut)} >Sair</button>
+        <button  onClick={logOut} >Sair</button>
       </nav>
 
       <header>
@@ -34,17 +42,16 @@ const logOut = () => {
 
       <div>
         <h5>Tecnologias</h5>
-        <RegisterModal/>
+        <RegisterModal changeTecs={changeTecs} setChangeTecs={setChangeTecs} userLoged={userLoged}/>
       </div>
 
       <main className='button-card'>
 
         {changeTecs.map((tec, index) => {
-					return <TecnologyCard className='button-card' dataUser={dataUser} setDataUser={setDataUser} setChangeTecs={setChangeTecs} changeTecs={changeTecs}/>
+					return <TecnologyCard key={index} className='button-card' tec={tec} setChangeTecs={setChangeTecs} changeTecs={changeTecs}/>
 				})}
 
       </main>
-  
     </Content>
   </Container>
 }

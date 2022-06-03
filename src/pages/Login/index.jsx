@@ -14,8 +14,10 @@ function Login({authenticated, setAuthenticated}) {
   }
 
   const onSubmitFunction = (data) => {
-    api.post('/sessions', data).then(response => {
-      const {token, user} = response.data
+
+    api.post('/sessions', data)
+    .then((res) => {
+      const {token, user} = res.data
       localStorage.setItem('@Kenziehub:token', JSON.stringify(token))
       localStorage.setItem('@Kenziehub:user', JSON.stringify(user))
       setAuthenticated(true)
@@ -46,17 +48,18 @@ function Login({authenticated, setAuthenticated}) {
     return <Redirect to='/home'/>
   }
 
-
   return <Container>
     <Content>
       <h1>Kenzie Hub</h1>
       <div>
         <h5>Login</h5>
-        <p>Email</p>
         <form onSubmit={handleSubmit(onSubmitFunction)}>
+          <p>Email</p>
           <input type="text" placeholder="Digite aqui seu Email"  {...register('email')}/>
+          {errors.email?.message}
           <p>Senha</p>
-          <input type="text" placeholder="Digite aqui sua senha"  {...register('password')} />
+          <input type="password" placeholder="Digite aqui sua senha"  {...register('password')} />
+          {errors.password?.message}
           <button type="submit">Entrar</button>
         </form>
         <h6>Ainda não possui conta?</h6>

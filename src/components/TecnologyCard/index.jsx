@@ -1,16 +1,14 @@
 import { Container } from "./styles"
 import ForChangeModal from "../ModalForChange"
 
-function TecnologyCard({dataUser, setDataUser, setChangeTecs, changeTecs}) {
-
-
+function TecnologyCard({tec}) {
 
   return <Container>
 
-    <h5>{changeTecs.title}</h5>
+    <h5>{tec.title}</h5>
     <div>
-      <h6>{changeTecs.status} </h6>
-      <ForChangeModal setChangeTecs={setChangeTecs} changeTecs={changeTecs}/>
+      <h6>{tec.status} </h6>
+      <ForChangeModal tec={tec}/>
     </div>
 
   </Container>

@@ -28,6 +28,7 @@ export const Content = styled.div`
     border-radius: 4px;
     height: 70%;
     margin-bottom: 10%;
+    padding: 15px;
 
     h5, h6, p, input, button {
       margin: 10px;
@@ -49,29 +50,50 @@ export const Content = styled.div`
       font-weight: normal;
     } 
 
-    input {
+    form {
+
+      height: 50%;
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+
+      input {
       border: none;
       background: var(--grey-2);
-      padding: 15px 10px 15px 10px;
       border-radius: 4px;
       color: #868E96;
       border: 1.2182px solid var(--grey-0);
-    }
+      width: 100%;
+      margin: 0 auto;
+      padding-top: 10px; 
+      padding-bottom: 10px; 
+      }
 
-    button{
-      background: var(--primary);
-      border: none;
-      border-radius: 4px;
-      color: #FFFFFF;
-      font-weight: bold;
-      padding: 15px 10px 15px 10px;
+      button{
+        background: var(--primary);
+        border: none;
+        border-radius: 4px;
+        color: #FFFFFF;
+        font-weight: bold;
+        margin: 0 auto;
+        padding-top: 10px; 
+        padding-bottom: 10px; 
+        width: 100%;
+      }
     }
+  }
 
-    .button-register {
-      background: var(--grey-1);
-      color: var(--grey-0);
-    }
-
+  .button-register {
+    background: var(--grey-1);
+    color: var(--grey-0);
+    border: none;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin: 0 auto;
+    padding-top: 10px; 
+    padding-bottom: 10px; 
+    width: 100%;
   }
 
   h1 {
@@ -81,6 +103,7 @@ export const Content = styled.div`
     text-align: center;
     justify-content: center;
   }
+
 
 `
 

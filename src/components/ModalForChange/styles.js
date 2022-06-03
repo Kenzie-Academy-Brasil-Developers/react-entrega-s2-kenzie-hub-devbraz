@@ -25,54 +25,59 @@ export const Container = styled.div`
   }
 
   .div-contain {
+
     display: flex;
     flex-direction: column;
     height: 85%;
     background: var(--grey-3);
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
-    button {
-      background: var(--primary);
-      border: none;
-      border-radius: 4px;
-      color: #FFFFFF;
-      font-weight: bold;
-      padding: 15px 10px 15px 10px;
-      padding: 10px;
+
+    form {
+
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+      height: 100%;
+
+      div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0;
+        background: var(--grey-3);
+        width: 100%;
+
+        button {
+        background: var(--primary);
+        border: none;
+        border-radius: 4px;
+        color: #FFFFFF;
+        font-weight: bold;
+        padding: 15px 10px 15px 10px;
+        padding: 10px;
+        width: 70%;
+
+        }
+
+        .grey-button {
+          background: var(--grey-1);
+          width: 25%;
+        }
+
+      }
+
+      input {
+        border: none;
+        background: var(--grey-2);
+        padding: 15px 10px 15px 10px;
+        border-radius: 4px;
+        color: #868E96;
+        border: 1.2182px solid var(--grey-0);
+        padding: 10px;
+      }
+
     }
-    input {
-      border: none;
-      background: var(--grey-2);
-      padding: 15px 10px 15px 10px;
-      border-radius: 4px;
-      color: #868E96;
-      border: 1.2182px solid var(--grey-0);
-      padding: 10px;
-    }
+
   }
 `
-
-// export const ContainerButton = styled`
-
-
-
-//     display: flex;
-//   justify-content: flex-end;
-//   flex-direction: row;
-//   width: 100%;
-//   height: 100%;  
-//   font-size: 12px;
-//   background: none;
-//   color: var(--grey-1);
-//   border: none;
-//   height: 32px;
-//   border-radius: 4px;
-//   min-width: 10px;
-//   align-items: center;
-//   padding: 0;
-
-
-
-
-
-// `

@@ -3,8 +3,6 @@ import GlobalStyle from './styles/global'
 import { ToastContainer } from 'react-toastify';
 import styled from "styled-components"
 import 'react-toastify/dist/ReactToastify.css';
-import { useState } from "react";
-
 
 const StyledContainer = styled(ToastContainer)`
   .Toastify__toast-container {}
@@ -32,8 +30,6 @@ const StyledContainer = styled(ToastContainer)`
 
 function App() {
 
-  const [dataUser, setDataUser] = useState([]); 
-
   return <>
       <GlobalStyle/>
         <StyledContainer
@@ -48,7 +44,7 @@ function App() {
           pauseOnHover
           />
         <StyledContainer />
-      <Routes dataUser={dataUser} setDataUser={setDataUser}/>
+      <Routes />
     </>
 }
 

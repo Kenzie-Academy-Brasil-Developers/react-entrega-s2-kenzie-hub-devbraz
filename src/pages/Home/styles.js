@@ -103,13 +103,19 @@ export const Content = styled.div`
 
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     align-items: flex-start;
-    height: 55%;
+    min-height: 55%;
+    height: auto;
     background: var(--grey-3);
     border-radius: 4px;
+    padding: 0 15px 15px 15px;
 
+    div {
+      min-height: 50px;
+      height: 50px;
+    }
     
   }
 

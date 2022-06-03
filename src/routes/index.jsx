@@ -4,7 +4,7 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import { useState, useEffect } from 'react'
 
-function Routes({dataUser, setDataUser}) {
+function Routes() {
 
   const [authenticated, setAuthenticated] = useState(false)
 
@@ -27,7 +27,7 @@ function Routes({dataUser, setDataUser}) {
         <Register authenticated={authenticated}/>
       </Route>
       <Route path={'/home'}>
-        <Home authenticated={authenticated} dataUser={dataUser} setDataUser={setDataUser}/>
+        <Home authenticated={authenticated}/>
       </Route>
 
     </Switch>

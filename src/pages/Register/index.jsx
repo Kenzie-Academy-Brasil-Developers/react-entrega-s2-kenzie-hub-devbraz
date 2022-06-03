@@ -16,7 +16,6 @@ function Register({authenticated}) {
   }
 
   const onSubmitFunction = (data) => {
-    // const user = {name, email, password, course_module}
     delete data.passwordConfirm
     data.bio = 'teste'
     data.contact = 'teste'
@@ -26,7 +25,7 @@ function Register({authenticated}) {
       toast.success('Conta criada com sucesso!')
       return history.push('/')
     })
-    .catch((err) => toast.error('Ops! Algo deu errado') )
+    .catch((err) => toast.error('Email já cadastrado') )
     
   }
 

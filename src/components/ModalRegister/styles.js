@@ -26,13 +26,21 @@ export const Container = styled.div`
 
   .div-contain {
     display: flex;
+    justify-content: space-evenly;
     flex-direction: column;
     height: 85%;
     background: var(--grey-3);
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
 
-    button {
+    form {
+
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+      height: 100%;
+
+      button {
       background: var(--primary);
       border: none;
       border-radius: 4px;
@@ -40,17 +48,21 @@ export const Container = styled.div`
       font-weight: bold;
       padding: 15px 10px 15px 10px;
       padding: 10px;
-    }
+      }
     
-    input {
-      border: none;
-      background: var(--grey-2);
-      padding: 15px 10px 15px 10px;
-      border-radius: 4px;
-      color: #868E96;
-      border: 1.2182px solid var(--grey-0);
-      padding: 10px;
+      input {
+        border: none;
+        background: var(--grey-2);
+        padding: 15px 10px 15px 10px;
+        border-radius: 4px;
+        color: #868E96;
+        border: 1.2182px solid var(--grey-0);
+        padding: 10px;
+      }
+
     }
+
+
   }
 
 
