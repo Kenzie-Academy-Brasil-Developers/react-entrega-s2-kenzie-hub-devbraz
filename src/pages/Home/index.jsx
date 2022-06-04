@@ -2,7 +2,7 @@ import { Container, Content } from "./styles"
 import { Redirect, useHistory } from "react-router-dom"
 import TecnologyCard from "../../components/TecnologyCard"
 import RegisterModal from "../../components/ModalRegister"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import api from "../../services/api";
 
 function Home({authenticated}) {
@@ -12,13 +12,11 @@ function Home({authenticated}) {
   const userLoged = JSON.parse(localStorage.getItem('@Kenziehub:user'))
   const {id} = userLoged
 
-  useEffect(()=>{
-    api.get(`/users/${id}`).then((res) => {
-      localStorage.setItem('@Kenziehub:user', JSON.stringify(res.data))
-      setChangeTecs([...changeTecs, ...res.data.techs])
-    })
-  },[])
-
+  api.get(`/users/${id}`).then((res) => {
+    localStorage.setItem('@Kenziehub:user', JSON.stringify(res.data))
+    setChangeTecs(res.data.techs)
+  }).catch((err)=> console.log(err))
+ 
   if (!authenticated) {
     return <Redirect to='/'/>
   }
@@ -48,7 +46,7 @@ function Home({authenticated}) {
       <main className='button-card'>
 
         {changeTecs.map((tec, index) => {
-					return <TecnologyCard key={index} className='button-card' tec={tec} setChangeTecs={setChangeTecs} changeTecs={changeTecs}/>
+					return <TecnologyCard key={index} className='button-card' tec={tec} setChangeTecs={setChangeTecs}/>
 				})}
 
       </main>

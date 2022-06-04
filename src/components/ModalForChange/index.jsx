@@ -5,30 +5,49 @@ import { useForm } from 'react-hook-form';
 import api from "../../services/api";
 import edit from './edit.png'
 
-export default function ForChangeModal({tec}) {
+export default function ForChangeModal({tec, setChangeTecs}) {
 
   const {register, handleSubmit} = useForm()
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const userToken = JSON.parse(localStorage.getItem('@Kenziehub:token'))
+  const userId = JSON.parse(localStorage.getItem('@Kenziehub:user'))
   
+
+
+  const getUser = () => {
+
+    api.get(`/users/${userId.id}`).then((res) => {
+      localStorage.setItem('@Kenziehub:user', JSON.stringify(res.data))
+      setChangeTecs(res.data.techs)
+      
+      
+    })
+    
+    handleClose()
+
+  }
+
   const onSubmitFunction = (data) => {
 
     api.put(`/users/techs/${tec.id}`, data, {
       headers: {Authorization: `Bearer ${userToken}`}
     })
-    .then((res) => {console.log(res)}).catch((err) => console.log(err))
+    .then((res) => {
+      getUser()
+    }).catch((err) => console.log(err))
   
   }
 
-  const deleteFunction = (data) => {
+  const deleteFunction = () => {
 
-    console.log(data)
-    api.delete(`/users/techs/${tec.id}`, data, {
+    api.delete(`/users/techs/${tec.id}`, {
       headers: {Authorization: `Bearer ${userToken}`}
     })
-    .then((res) => {console.log(res)}).catch((err) => console.log(err))
+    .then((res) => {
+      getUser()
+    }).catch((err) => console.log(err))
     
   }
 
@@ -58,7 +77,7 @@ export default function ForChangeModal({tec}) {
               </datalist>
               <div>
                 <button type="submit">Salvar alterações</button>
-                <button type='button' className='grey-button' onClick={deleteFunction} >Excluir</button>
+                <button onClick={deleteFunction} type='button' className='grey-button' >Excluir</button>
               </div>
             </form>
           </div>

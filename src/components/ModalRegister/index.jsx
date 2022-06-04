@@ -18,9 +18,12 @@ export default function RegisterModal({changeTecs, setChangeTecs, userLoged}) {
 
     api.get(`/users/${id}`).then((res) => {
       localStorage.setItem('@Kenziehub:user', JSON.stringify(res.data))
-      setChangeTecs([...changeTecs, ...res.data.techs])
+      setChangeTecs(res.data.techs)
+      
     })
 
+    handleClose()
+    
   }
 
   const onSubmitFunction = (data) => {
@@ -30,7 +33,6 @@ export default function RegisterModal({changeTecs, setChangeTecs, userLoged}) {
     })
     .then((res) => {
       getUser()
-      
     })
     .catch((err) => console.log(err) )
     
@@ -60,7 +62,7 @@ export default function RegisterModal({changeTecs, setChangeTecs, userLoged}) {
                 <option value='Intermediário' />
                 <option value='Avançado' />
               </datalist>
-              <button onClick={getUser} type="submit">Cadastrar Tecnologia</button>
+              <button type="submit">Cadastrar Tecnologia</button>
             </form>
           </div>
         </Container>
