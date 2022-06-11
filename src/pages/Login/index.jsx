@@ -22,7 +22,7 @@ function Login({authenticated, setAuthenticated}) {
       localStorage.setItem('@Kenziehub:user', JSON.stringify(user))
       setAuthenticated(true)
       return history.push('/home')
-    })
+    }).catch((err) => toast.error('Email ou senha inválido') )
   }
 
   const schema = yup.object().shape({
