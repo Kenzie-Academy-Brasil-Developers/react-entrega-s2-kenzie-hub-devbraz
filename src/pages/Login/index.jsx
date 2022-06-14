@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
 import api from "../../services/api";
+import { toast } from "react-toastify";
 
 function Login({authenticated, setAuthenticated}) {
 
