@@ -5,37 +5,39 @@ import { Container } from './styles';
 import { useForm } from 'react-hook-form';
 import api from '../../services/api';
 
-export default function RegisterModal({changeTecs, setChangeTecs, userLoged}) {
+export default function RegisterModal({ changeTecs, setChangeTecs, userLoged }) {
 
-  const {register, handleSubmit} = useForm()
+  const { register, handleSubmit } = useForm()
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const userToken = JSON.parse(localStorage.getItem('@Kenziehub:token'))
-  const {id} = userLoged
+  const { id } = userLoged
 
   const getUser = () => {
 
     api.get(`/users/${id}`).then((res) => {
       localStorage.setItem('@Kenziehub:user', JSON.stringify(res.data))
       setChangeTecs(res.data.techs)
-      
+
     })
 
     handleClose()
-    
+
   }
 
   const onSubmitFunction = (data) => {
 
-    api.post('/users/techs', data, {
-      headers: {Authorization: `Bearer ${userToken}`}
-    })
-    .then((res) => {
-      getUser()
-    })
-    .catch((err) => console.log(err) )
-    
+    if (data.status === 'Iniciante' || 'Intermediário' || 'Avançado') {
+      api.post('/users/techs', data, {
+        headers: { Authorization: `Bearer ${userToken}` }
+      })
+        .then((res) => {
+          getUser()
+        })
+        .catch((err) => console.log(err))
+    }
+
   }
 
   return (
@@ -54,11 +56,11 @@ export default function RegisterModal({changeTecs, setChangeTecs, userLoged}) {
           <div className='div-contain'>
             <form onSubmit={handleSubmit(onSubmitFunction)}>
               <h6>Nome</h6>
-              <input type="text" {...register('title')}/>
+              <input type="text" {...register('title')} />
               <h6>Selecionar status</h6>
-                <input list='status' placeholder='Status' {...register('status')}/>
+              <input list='status' placeholder='Status' {...register('status')} />
               <datalist id="status" >
-                <option value='Iniciante'  />
+                <option value='Iniciante' />
                 <option value='Intermediário' />
                 <option value='Avançado' />
               </datalist>

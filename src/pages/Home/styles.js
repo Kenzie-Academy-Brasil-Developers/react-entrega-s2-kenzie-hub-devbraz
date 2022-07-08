@@ -102,7 +102,7 @@ export const Content = styled.div`
   main {
 
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-direction: column;
     width: 100%;
     align-items: flex-start;
