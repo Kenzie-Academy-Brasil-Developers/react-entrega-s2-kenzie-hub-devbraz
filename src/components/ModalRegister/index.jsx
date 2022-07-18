@@ -28,7 +28,7 @@ export default function RegisterModal({ changeTecs, setChangeTecs, userLoged }) 
 
   const onSubmitFunction = (data) => {
 
-    if (data.status === 'Iniciante' || 'Intermediário' || 'Avançado') {
+    if (data.status === 'Iniciante' || data.status === 'Intermediário' || data.status === 'Avançado') {
       api.post('/users/techs', data, {
         headers: { Authorization: `Bearer ${userToken}` }
       })
@@ -36,6 +36,8 @@ export default function RegisterModal({ changeTecs, setChangeTecs, userLoged }) 
           getUser()
         })
         .catch((err) => console.log(err))
+    } else {
+      console.log(data)
     }
 
   }

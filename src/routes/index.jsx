@@ -1,4 +1,4 @@
-import {Switch, Route} from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
@@ -14,26 +14,26 @@ function Routes() {
     if (token) {
       return setAuthenticated(true)
     }
-  },[authenticated])
+  }, [authenticated])
 
   return (
 
     <Switch>
 
       <Route exact path={'/'}>
-        <Login authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+        <Login authenticated={authenticated} setAuthenticated={setAuthenticated} />
       </Route>
       <Route path={'/register'}>
-        <Register authenticated={authenticated}/>
+        <Register authenticated={authenticated} />
       </Route>
       <Route path={'/home'}>
-        <Home authenticated={authenticated}/>
+        <Home authenticated={authenticated} setAuthenticated={setAuthenticated} />
       </Route>
 
     </Switch>
 
   )
-  
+
 }
 
 export default Routes
