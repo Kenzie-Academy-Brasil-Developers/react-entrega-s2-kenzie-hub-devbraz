@@ -28,17 +28,14 @@ export default function RegisterModal({ changeTecs, setChangeTecs, userLoged }) 
 
   const onSubmitFunction = (data) => {
 
-    if (data.status === 'Iniciante' || data.status === 'Intermediário' || data.status === 'Avançado') {
-      api.post('/users/techs', data, {
-        headers: { Authorization: `Bearer ${userToken}` }
+
+    api.post('/users/techs', data, {
+      headers: { Authorization: `Bearer ${userToken}` }
+    })
+      .then((res) => {
+        getUser()
       })
-        .then((res) => {
-          getUser()
-        })
-        .catch((err) => console.log(err))
-    } else {
-      console.log(data)
-    }
+      .catch((err) => console.log(err))
 
   }
 
@@ -61,11 +58,11 @@ export default function RegisterModal({ changeTecs, setChangeTecs, userLoged }) 
               <input type="text" {...register('title')} />
               <h6>Selecionar status</h6>
               <input list='status' placeholder='Status' {...register('status')} />
-              <datalist id="status" >
+              <select id="status" >
                 <option value='Iniciante' />
                 <option value='Intermediário' />
                 <option value='Avançado' />
-              </datalist>
+              </select>
               <button type="submit">Cadastrar Tecnologia</button>
             </form>
           </div>
